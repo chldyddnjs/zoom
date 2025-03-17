@@ -1,0 +1,31 @@
+{
+  "name": "zoom",
+  "version": "1.0.0",
+  "description": "zoom coding",
+  "main": "app.ts",
+  "author": "ywchoi",
+  "license": "MIT",
+  "private": null,
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "npx tsc",
+    "dev": "nodemon --watch \"src/**/*.ts\" --exec \"ts-node\" src/app.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.8",
+    "@types/ws": "^8.18.0",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "express-react-views": "^0.11.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.9"
+  }
+}
