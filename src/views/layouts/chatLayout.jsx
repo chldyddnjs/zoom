@@ -10,10 +10,10 @@ function ChatCompletion(params) {
             <body>
                 <main>
                     <ul>
-                        <from id="nickname"> 
+                        <form id="nickname">
                             <input type="text" placeholder="Choose the nickname"/>
                             <button>Save</button>
-                        </from>
+                        </form>
                     </ul>
                     <ul>
                         <form id="message">
@@ -23,7 +23,7 @@ function ChatCompletion(params) {
                     </ul>
                 </main>
             </body>
-            <script src="/public/js/app.js" />
+            <script src="public/ts/app.js" />
         </html>
     );
 }

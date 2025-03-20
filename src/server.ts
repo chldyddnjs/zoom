@@ -35,14 +35,32 @@ app.get('/*',(_,res:Response) => res.redirect('/'));
 
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
-const sockets = [];
+const sockets:WebSocket[] = [];
 
-wss.on('connection', (socket) => {
+interface CustomWebSocket extends WebSocket{
+    nickname?:string;
+}
 
+wss.on('connection', (ws:WebSocket) => {
+    const socket = ws as CustomWebSocket;
+    
     sockets.push(socket);
     console.log("Connected to Browser");
     socket.on("close", () => console.log("Disconnected from the Browser"));
-    socket.on("message",(message)=> {socket.send(message)});
+    socket.on("message",(message) => {
+        const parsedMessage = JSON.parse(message.toString())
+        console.log(parsedMessage)
+        //broadcast the message to all connected clients
+        switch(parsedMessage.type){
+            case "nickname":
+                socket["nickname"] = parsedMessage.payload;
+                console.log("Received message:",parsedMessage.type,parsedMessage.payload);
+                break
+            case "new_message":
+                sockets.forEach((client:WebSocket) => {client.send(`${socket['nickname']}:${parsedMessage.payload}`);});
+                break
+        }
+    });
 
 });
 
